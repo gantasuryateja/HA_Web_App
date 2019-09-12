@@ -1,0 +1,48 @@
+Description: >
+    Surya Teja Ganta / DevOps Nanodegree Project 2
+
+Parameters:
+
+    EnvironmentName:
+        Description: Environment name will be prefixed to resources
+        Type: String
+
+    VpcCIDR:
+        Description: Please enter the IP range (CIDR notation) for this
+        Type: String
+        Default: 10.0.0.0/16
+    
+    PublicSubnet1CIDR:
+        Description: Please enter the IP range (CIDR notation) for the subnet
+        Type: String
+        Default: 10.0.0.0/24
+    
+    PublicSubnet2CIDR:
+        Description: Please enter the IP range (CIDR notation) for the subnet
+        Type: String
+        Default: 10.0.1.0/24
+    
+    PrivateSubnet1CIDR:
+        Description: Please enter the IP range (CIDR notation) for the subnet
+        Type: String
+        Default: 10.0.2.0/24
+    
+    PrivateSubnet2CIDR:
+        Description: Please enter the IP range (CIDR notation) for the subnet
+        Type: String
+        Default: 10.0.2.0/24
+    
+    InstanceType:
+        Description: "EC2 instance type of general purpose"
+        Type: String
+        AllowedValues: [t2.medium, t3a.medium, t3.medium]
+
+Resources:
+    VPC:
+        Type: AWS::EC2::VPC
+        Properties: 
+            CidrBlock: String
+            EnableDnsHostnames: Boolean
+            Tags:
+                - Key: Name
+                  Value: !Ref EnvironmentName
