@@ -1,2 +1,3 @@
 # HA_Web_App
-Project-2 for udacity nano degree
+Udacity Cloud DevOps Engineer nanodegree
+Project 2: Deploy Infrastructure as Code
