@@ -59,7 +59,6 @@ Resources:
         Properties: 
           InternetGatewayId: !Ref InternetGateway
           VpcId: !Ref VPC
-          VpnGatewayId: !Ref InternetGateway
     
     PublicSubnet1:
         Type: AWS::EC2::Subnet
@@ -121,13 +120,13 @@ Resources:
           Type: AWS::EC2::NatGateway
           Properties: 
               AllocationId: !GetAtt NatGateway1EIP.AllocationId
-              SubnetId: !Ref PublicSubnet1CIDR
+              SubnetId: !Ref PublicSubnet1
 
     NatGateway2: 
           Type: AWS::EC2::NatGateway
           Properties:
               AllocationId: !GetAtt NatGateway2EIP.AllocationId
-              SubnetId: !Ref PublicSubnet2CIDR
+              SubnetId: !Ref PublicSubnet2
 
     PublicRouteTable:
           Type: AWS::EC2::RouteTable
@@ -149,13 +148,13 @@ Resources:
         Type: AWS::EC2::SubnetRouteTableAssociation
         Properties:
             RouteTableId: !Ref PublicRouteTable
-            SubnetId: !Ref PublicSubnet1CIDR
+            SubnetId: !Ref PublicSubnet1
 
     PublicSubnet2RouteTableAssociation:
         Type: AWS::EC2::SubnetRouteTableAssociation
         Properties:
             RouteTableId: !Ref PublicRouteTable
-            SubnetId: !Ref PublicSubnet2CIDR
+            SubnetId: !Ref PublicSubnet2
     
 
     PrivateRouteTable1:
@@ -177,7 +176,7 @@ Resources:
         Type: AWS::EC2::SubnetRouteTableAssociation
         Properties:
             RouteTableId: !Ref PrivateRouteTable1
-            SubnetId: !Ref PrivateSubnet1CIDR
+            SubnetId: !Ref PrivateSubnet1
 
     PrivateRouteTable2:
         Type: AWS::EC2::RouteTable
@@ -198,4 +197,4 @@ Resources:
         Type: AWS::EC2::SubnetRouteTableAssociation
         Properties:
             RouteTableId: !Ref PrivateRouteTable2
-            SubnetId: !Ref PrivateSubnet1CIDR
+            SubnetId: !Ref PrivateSubnet2
