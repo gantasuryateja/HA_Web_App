@@ -41,7 +41,7 @@ Resources:
     VPC:
         Type: AWS::EC2::VPC
         Properties: 
-            CidrBlock: String
+            CidrBlock: !Ref VpcCIDR
             EnableDnsHostnames: true
             Tags:
                 - Key: Name
@@ -59,7 +59,7 @@ Resources:
         Properties: 
           InternetGatewayId: !Ref InternetGateway
           VpcId: !Ref VPC
-          VpnGatewayId: String
+          VpnGatewayId: !Ref InternetGateway
     
     PublicSubnet1:
         Type: AWS::EC2::Subnet
@@ -69,8 +69,8 @@ Resources:
           CidrBlock: !Ref PublicSubnet1CIDR
           MapPublicIpOnLaunch: False
           Tags: 
-              Key: Name
-              Value: !Sub ${EnvironmentName} Public Subnet - AZ1
+             - Key: Name
+               Value: !Sub ${EnvironmentName} Public Subnet - AZ1
           
     PublicSubnet2:
         Type: AWS::EC2::Subnet
@@ -80,8 +80,8 @@ Resources:
           CidrBlock: !Ref PublicSubnet2CIDR
           MapPublicIpOnLaunch: False
           Tags: 
-              Key: Name
-              Value: !Sub ${EnvironmentName} Public Subnet - AZ2
+              - Key: Name
+                Value: !Sub ${EnvironmentName} Public Subnet - AZ2
 
     PrivateSubnet1:
         Type: AWS::EC2::Subnet
@@ -91,8 +91,8 @@ Resources:
           CidrBlock: !Ref PrivateSubnet1CIDR
           MapPublicIpOnLaunch: False
           Tags: 
-              Key: Name
-              Value: !Sub ${EnvironmentName} Private Subnet - AZ1
+              - Key: Name
+                Value: !Sub ${EnvironmentName} Private Subnet - AZ1
 
     PrivateSubnet2:
           Type: AWS::EC2::Subnet
@@ -102,8 +102,8 @@ Resources:
             CidrBlock: !Ref PrivateSubnet2CIDR
             MapPublicIpOnLaunch: False
             Tags: 
-                Key: Name
-                Value: !Sub ${EnvironmentName} Private Subnet - AZ2
+                - Key: Name
+                  Value: !Sub ${EnvironmentName} Private Subnet - AZ2
 
     NatGateway1EIP:
             Type: AWS::EC2::EIP
